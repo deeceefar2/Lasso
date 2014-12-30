@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.IO;
+using NUnit.Framework;
 
 namespace Lasso.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class HeaderParsingTests
     {
-        [TestMethod]
+        [Test]
         public void HeaderLineParse_WithSpaceTilde_Pass()
         {
             var shortAsciiHeader = " ~A";
             Assert.AreEqual(Lasso.Sections.ASCIIDATA, shortAsciiHeader.TrimStart());
         }
 
-        [TestMethod]
+        [Test]
         public void HeaderLineParse_CurveFullHeaderSection_Pass()
         {
             var curveHeader = " ~CURVE INFORMATION";
@@ -28,7 +28,7 @@ namespace Lasso.Tests
             Assert.AreEqual(Lasso.Sections.CURVEINFO, builtCurve.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void HeaderLineParseSection_WhiteSpaceTest_Pass()
         {
             StringBuilder input = new StringBuilder();

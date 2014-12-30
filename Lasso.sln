@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lasso", "Lasso\Lasso.csproj", "{F3D9A53B-2A24-4373-BD9D-234C1EE65698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lasso.Tests", "Lasso.Tests\Lasso.Tests.csproj", "{AC6604A1-3CDC-4B14-84AD-F991A128995A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lasso.UnitTests", "Lasso.UnitTests\Lasso.UnitTests.csproj", "{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F3D9A53B-2A24-4373-BD9D-234C1EE65698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3D9A53B-2A24-4373-BD9D-234C1EE65698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D9A53B-2A24-4373-BD9D-234C1EE65698}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC6604A1-3CDC-4B14-84AD-F991A128995A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC6604A1-3CDC-4B14-84AD-F991A128995A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC6604A1-3CDC-4B14-84AD-F991A128995A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC6604A1-3CDC-4B14-84AD-F991A128995A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

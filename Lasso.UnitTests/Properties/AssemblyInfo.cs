@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Lasso.Tests")]
+[assembly: AssemblyTitle("Lasso.UnitTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Lasso.Tests")]
+[assembly: AssemblyProduct("Lasso.UnitTests")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f8f09286-fe29-4fe5-bde8-e44d819b841b")]
+[assembly: Guid("1a3d2910-3f7f-4d32-96bd-835b08e21b89")]
 
 // Version information for an assembly consists of the following four values:
 //
