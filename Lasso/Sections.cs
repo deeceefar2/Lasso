@@ -14,6 +14,7 @@ namespace Lasso
     //before the last section (~A). 
     public class Sections
     {
+        public const char SECTIONBEGIN = '~';
         public const string VERSIONINFO = "~v";
         public const string WELLINFO = "~W";
         public const string CURVEINFO = "~C";
