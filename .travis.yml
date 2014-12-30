@@ -1,5 +1,2 @@
-language: c
-compiler:
-  - gcc
-  - clang
-script: ./configure && make
+language: csharp
+solution: Lasso.sln
