@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace Lasso
 {
-    class Lasso : ILasParser<string> 
+    class Lasso : ILasHeaderParser<LasHeaderModel>, ILasDataParser<LasHeaderModel>
     {
-
-        public IEnumerable<string> ParseHeader(string filePath)
+        public IEnumerable<LasHeaderModel> ParseHeader(string filePath)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<string>> ParseHeadrerAsync(string filePath)
+        public Task<IEnumerable<LasHeaderModel>> ParseHeadrerAsync(string filePath)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<string> ParseDataRow(string filePath)
+        public IEnumerable<LasHeaderModel> ParseDataRow(string filePath)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<string>> ParseDataRowAsync(string filePath)
+        public Task<IEnumerable<LasHeaderModel>> ParseDataRowAsync(string filePath)
         {
             throw new NotImplementedException();
         }

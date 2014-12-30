@@ -37,7 +37,8 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ILasParser.cs" />
+    <Compile Include="ILasDataParser.cs" />
+    <Compile Include="ILasHeaderParser.cs" />
     <Compile Include="LasDataModel.cs" />
     <Compile Include="LasHeaderModel.cs" />
     <Compile Include="Lasso.cs" />
