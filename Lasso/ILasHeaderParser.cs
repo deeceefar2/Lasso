@@ -9,6 +9,6 @@ namespace Lasso
     public interface ILasHeaderParser<T> where T : class
     {
         IEnumerable<T> ParseHeader(string filePath);
-        Task<IEnumerable<T>> ParseHeadrerAsync(string filePath);
+        Task<IEnumerable<T>> ParseHeaderAsync(string filePath);
     }
 }
