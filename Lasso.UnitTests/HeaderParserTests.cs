@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using NUnit.Framework;
+using Lasso.Parser;
 
 namespace Lasso.Tests
 {
@@ -13,7 +14,7 @@ namespace Lasso.Tests
         public void HeaderLineParse_WithSpaceTilde_Pass()
         {
             var shortAsciiHeader = " ~A";
-            Assert.AreEqual(Lasso.Sections.ASCIIDATA, shortAsciiHeader.TrimStart());
+            Assert.AreEqual(Sections.ASCIIDATA, shortAsciiHeader.TrimStart());
         }
 
         [Test]
@@ -25,7 +26,7 @@ namespace Lasso.Tests
             {
                 builtCurve.Append(character);
             }
-            Assert.AreEqual(Lasso.Sections.CURVEINFO, builtCurve.ToString());
+            Assert.AreEqual(Sections.CURVEINFO, builtCurve.ToString());
         }
 
         [Test]
@@ -65,10 +66,10 @@ namespace Lasso.Tests
                             {
                                 continue;
                             }
-                            else if (c == Lasso.Sections.SECTIONBEGIN)
+                            else if (c == Sections.SECTIONBEGIN)
                             {
                                 sectionBegin = true;
-                                section.Append(Lasso.Sections.SECTIONBEGIN);
+                                section.Append(Sections.SECTIONBEGIN);
                                 section.Append((char)tr.Peek());
                             }
                         }
@@ -89,7 +90,7 @@ namespace Lasso.Tests
             //    }
             //}
 
-            Assert.AreEqual(section, Lasso.Sections.VERSIONINFO);
+            Assert.AreEqual(section, Sections.VERSIONINFO);
         }
 
 

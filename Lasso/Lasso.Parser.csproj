@@ -36,7 +36,7 @@
     <Compile Include="ILasHeaderParser.cs" />
     <Compile Include="LasDataModel.cs" />
     <Compile Include="LasHeaderModel.cs" />
-    <Compile Include="Lasso.cs" />
+    <Compile Include="LasReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sections.cs" />
   </ItemGroup>

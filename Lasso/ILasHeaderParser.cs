@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lasso
+namespace Lasso.Parser
 {
     public interface ILasHeaderParser<T> where T : class
     {

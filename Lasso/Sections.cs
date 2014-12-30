@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lasso
+namespace Lasso.Parser
 {
     //Each LAS file consists of sections. Sections begin with a header line defined as beginning with
     //the ~ tilde character when it occurs as the first non-space character on a line. The character

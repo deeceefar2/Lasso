@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Lasso
+namespace Lasso.Parser
 {
-    class Lasso : ILasHeaderParser<LasHeaderModel>, ILasDataParser<LasDataModel>
+    public class LasReader : ILasHeaderParser<LasHeaderModel>, ILasDataParser<LasDataModel>
     {
+        private const string LASEXTENSION = ".las";
 
+        public bool IsValidLasExtension(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                throw new ArgumentException("File path cannot be null or empty.");
+
+            return filePath.EndsWith(LASEXTENSION, StringComparison.OrdinalIgnoreCase);
+        }
 
         protected IEnumerable<LasHeaderModel> ParseHeader(string filePath)
         {
