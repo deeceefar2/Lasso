@@ -1,8 +1,2 @@
 language: csharp
 solution: Lasso.sln
-install:
-- nuget restore Lasso.sln
-- nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
-script:
-- xbuild /p:Configuration=Release Lasso.sln
-- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Lasso.UnitTests/bin/Release/Lasso.UnitTests.dll
