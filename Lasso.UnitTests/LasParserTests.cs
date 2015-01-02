@@ -1,4 +1,5 @@
-﻿using LassoReader.Parsing;
+﻿using LassoReader.Models;
+using LassoReader.Parsing;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -30,18 +31,31 @@ namespace Lasso.UnitTests
             Assert.AreEqual(1, result.Version.Items.Count);
         }
 
-        [TestCase("STEP  .FT         0.20                           : STEP")]
-        public void ParseSectionRow_ValidSectionRow_ReturnsLasSectionItem(string row)
+        [TestCase("FLD   .           2nd Bone Springs               : Field", "FLD", "", "2nd Bone Springs", "Field")]
+        [TestCase("STEP  .FT         0.20                           : STEP", "STEP", "FT", "0.20", "STEP")]
+        [TestCase("STEP  .FT         0.20 :::: A                           : STEP UP ", "STEP", "FT", "0.20 :::: A", "STEP UP")]
+        [TestCase("STEP.FT 0.20:A:B:C:LAST", "STEP", "FT", "0.20:A:B:C", "LAST")]
+        [TestCase("PDAT  .           Mean Sea Level                 : Permanent Datum", "PDAT","","Mean Sea Level", "Permanent Datum")]
+        public void ParseSectionRow_ValidSectionRow_ReturnsLasSectionItem(string row, string mnemonic, string unit, string data, string desc)
         {
             var lasso = makeParser();
 
             var result = lasso.ParseSectionRow(row);
 
-            StringAssert.AreEqualIgnoringCase(result.Mnemonic, "STEP");
-            StringAssert.AreEqualIgnoringCase(result.Unit, "FT");
-            StringAssert.AreEqualIgnoringCase(result.Data, "0.20");
-
-
+            StringAssert.AreEqualIgnoringCase(result.Mnemonic, mnemonic);
+            StringAssert.AreEqualIgnoringCase(result.Unit, unit);
+            StringAssert.AreEqualIgnoringCase(result.Data, data);
+            StringAssert.AreEqualIgnoringCase(result.Description, desc);
         }
+
+        [Test]
+        public void StringBuilder_BlankInput_ReturnsNotNull()
+        {
+            StringBuilder b = new StringBuilder();
+            Assert.That(b.ToString(), !Is.Null);
+            Assert.That(b.ToString(), Is.Empty);
+            StringAssert.AreEqualIgnoringCase(b.ToString(), "");
+        }
+
     }
 }

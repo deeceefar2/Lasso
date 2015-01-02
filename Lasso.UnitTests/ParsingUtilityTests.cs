@@ -18,5 +18,15 @@ namespace Lasso.UnitTests
 
             StringAssert.AreEqualIgnoringCase(input, result);
         }
+
+        [TestCase(" A ", "A")]
+        [TestCase("  A B  C     ", "A B  C")]
+        public void StringBuilderTrim_InputWithWhiteSpace_ReturnsTrimedString(string input, string expectedOutput)
+        {
+            StringBuilder inputSB = new StringBuilder(input);
+            inputSB.Trim();
+
+            StringAssert.AreEqualIgnoringCase(inputSB.ToString(), expectedOutput);
+        }
     }
 }

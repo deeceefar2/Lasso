@@ -21,13 +21,5 @@ namespace LassoReader.Constants
         public const string PARAMETERINFO = "P";
         public const string OTHER = "O";
         public const string ASCIIDATA = "A";
-
-        //line delimters
-        public const string SECTIONBEGIN = "~";
-        public const string COMMENT = "#";
-        public const char DOT = '.';
-        public const char COLON =  ':';
-
-
     }
 }

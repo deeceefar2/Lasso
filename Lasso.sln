@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LassoReader", "Lasso\LassoR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LassoReader.UnitTests", "Lasso.UnitTests\LassoReader.UnitTests.csproj", "{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C782829-78B7-4B09-918E-88097427FEBF}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LassoConsole", "LassoConsole\LassoConsole.csproj", "{0198D9FE-EFC4-462F-AFF7-E1F187068B43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +28,15 @@ Global
 		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CAB665D-8603-4E8C-A0FA-EE77E7751B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0198D9FE-EFC4-462F-AFF7-E1F187068B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0198D9FE-EFC4-462F-AFF7-E1F187068B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0198D9FE-EFC4-462F-AFF7-E1F187068B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0198D9FE-EFC4-462F-AFF7-E1F187068B43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
