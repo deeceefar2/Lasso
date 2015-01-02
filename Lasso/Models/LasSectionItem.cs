@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lasso.Parser
+namespace LassoReader.Models
 {
-    public class LasHeaderModel
+    public class LasSectionItem
     {
         public string Mnemonic { get; set; }
         public string Unit { get; set; }

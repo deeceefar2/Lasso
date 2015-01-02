@@ -59,14 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HeaderParserTests.cs" />
+    <Compile Include="LasParserTests.cs" />
     <Compile Include="LassoTests.cs" />
+    <Compile Include="ParsingUtilityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AsciiTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lasso\Lasso.Parser.csproj">
+    <ProjectReference Include="..\Lasso\LassoReader.csproj">
       <Project>{f3d9a53b-2a24-4373-bd9d-234c1ee65698}</Project>
-      <Name>Lasso.Parser</Name>
+      <Name>LassoReader</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@
     <ProjectGuid>{F3D9A53B-2A24-4373-BD9D-234C1EE65698}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lasso</RootNamespace>
+    <RootNamespace>LassoReader</RootNamespace>
     <AssemblyName>Lasso</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
@@ -32,13 +32,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ILasDataParser.cs" />
-    <Compile Include="ILasHeaderParser.cs" />
-    <Compile Include="LasDataModel.cs" />
-    <Compile Include="LasHeaderModel.cs" />
-    <Compile Include="LasReader.cs" />
+    <Compile Include="Parsing\ILasParser.cs" />
+    <Compile Include="Models\LasData.cs" />
+    <Compile Include="Models\LasResult.cs" />
+    <Compile Include="Models\LasSection.cs" />
+    <Compile Include="Models\LasSectionItem.cs" />
+    <Compile Include="Lasso.cs" />
+    <Compile Include="Parsing\LasParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sections.cs" />
+    <Compile Include="Constants\Sections.cs" />
+    <Compile Include="Utility\ParsingUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

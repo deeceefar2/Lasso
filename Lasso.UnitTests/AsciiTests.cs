@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lasso.UnitTests
+namespace LassoReader.UnitTests
 {
     [TestFixture]
     public class AsciiTests

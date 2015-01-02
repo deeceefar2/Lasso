@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using NUnit.Framework;
-using Lasso.Parser;
+
 
 namespace Lasso.Tests
 {

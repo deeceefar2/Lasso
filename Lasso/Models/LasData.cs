@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lasso.Parser
+namespace LassoReader.Models
 {
-    public class LasDataModel
+    public class LasData
     {
         //hmm data model needs to be "dynamic" to fit header/data structure. matrix.
     }

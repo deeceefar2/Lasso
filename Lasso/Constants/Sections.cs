@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lasso.Parser
+namespace LassoReader.Constants
 {
     //Each LAS file consists of sections. Sections begin with a header line defined as beginning with
     //the ~ tilde character when it occurs as the first non-space character on a line. The character
@@ -14,12 +14,20 @@ namespace Lasso.Parser
     //before the last section (~A). 
     public class Sections
     {
-        public const char SECTIONBEGIN = '~';
-        public const string VERSIONINFO = "~v";
-        public const string WELLINFO = "~W";
-        public const string CURVEINFO = "~C";
-        public const string PARAMETERINFO = "~P";
-        public const string OTHER = "~O";
-        public const string ASCIIDATA = "~A";
+        //sections
+        public const string VERSIONINFO = "v";
+        public const string WELLINFO = "W";
+        public const string CURVEINFO = "C";
+        public const string PARAMETERINFO = "P";
+        public const string OTHER = "O";
+        public const string ASCIIDATA = "A";
+
+        //line delimters
+        public const string SECTIONBEGIN = "~";
+        public const string COMMENT = "#";
+        public const char DOT = '.';
+        public const char COLON =  ':';
+
+
     }
 }
