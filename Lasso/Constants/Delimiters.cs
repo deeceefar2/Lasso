@@ -14,8 +14,8 @@ namespace LassoReader.Constants
     /// </summary>
     public class Delimiters
     {
-        public const string SECTIONBEGIN = "~";
-        public const string COMMENT = "#";
+        public const char SECTIONBEGIN = '~';
+        public const char COMMENT = '#';
         public const char DOT = '.';
         public const char COLON = ':';
     }

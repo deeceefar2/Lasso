@@ -15,11 +15,11 @@ namespace LassoReader.Constants
     public class Sections
     {
         //sections
-        public const string VERSIONINFO = "v";
-        public const string WELLINFO = "W";
-        public const string CURVEINFO = "C";
-        public const string PARAMETERINFO = "P";
-        public const string OTHER = "O";
-        public const string ASCIIDATA = "A";
+        public const char VERSIONINFO = 'V';
+        public const char WELLINFO = 'W';
+        public const char CURVEINFO = 'C';
+        public const char PARAMETERINFO = 'P';
+        public const char OTHER = 'O';
+        public const char ASCIIDATA = 'A';
     }
 }

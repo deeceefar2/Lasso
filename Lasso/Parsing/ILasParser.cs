@@ -11,7 +11,5 @@ namespace LassoReader.Parsing
     {
         LasResult Parse(Stream stream);
         LasResult ParseAsync(Stream stream);
-        LasSectionItem ParseSectionRow(string row);
-        LasData ParseDataRow(string row);
     }
 }

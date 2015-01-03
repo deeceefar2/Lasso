@@ -11,7 +11,6 @@ namespace LassoReader.Models
         public List<LasSectionItem> Items 
         { 
             get { return _items; } 
-            set { _items = value; } 
         }
     }
 }

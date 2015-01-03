@@ -16,7 +16,7 @@ namespace LassoReader.Models
         public LasSection Curve { get; private set; }
         public LasSection Parameter { get; private set; }
         public LasSection Other { get; private set; }
-        public LasData Data { get; private set; }//convert to some dictionary type?
+        public LasData Data { get; set; }//convert to some dictionary type?
         public string Error { get; set; }
 
         public LasResult()

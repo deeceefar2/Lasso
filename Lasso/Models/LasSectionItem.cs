@@ -7,6 +7,10 @@ namespace LassoReader.Models
 {
     public class LasSectionItem
     {
+        public LasSectionItem()
+        {
+        }
+
         public string Mnemonic { get; set; }
         public string Unit { get; set; }
         public string Data { get; set; }

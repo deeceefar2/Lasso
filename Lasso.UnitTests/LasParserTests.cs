@@ -18,17 +18,13 @@ namespace Lasso.UnitTests
             return new LasParser();
         }
 
-        [Ignore]
-        [TestCase("~v")]
-        [TestCase(" ~  V asdfghytrew")]
-        public void Parse_SectionHeaderInput_ReturnsLasResult(string row)
+        [TestCase("7900.80   -999.25   047.00", 3)]
+        [TestCase("1 2 3 4      5    6             7", 7)]
+        public void ParseDataRow_ValidDataRow_ReturnsCorrectCols(string row, int expectedLength)
         {
-            var stream = new MemoryStream(Encoding.ASCII.GetBytes(row));
-            var lasso = makeParser();
+            string[] currentRow = row.Trim().Split(new string[]{" "}, StringSplitOptions.RemoveEmptyEntries);
+            Assert.AreEqual(expectedLength, currentRow.Length);
 
-            var result = lasso.Parse(stream);
-
-            Assert.AreEqual(1, result.Version.Items.Count);
         }
 
         [TestCase("FLD   .           2nd Bone Springs               : Field", "FLD", "", "2nd Bone Springs", "Field")]
@@ -38,9 +34,9 @@ namespace Lasso.UnitTests
         [TestCase("PDAT  .           Mean Sea Level                 : Permanent Datum", "PDAT","","Mean Sea Level", "Permanent Datum")]
         public void ParseSectionRow_ValidSectionRow_ReturnsLasSectionItem(string row, string mnemonic, string unit, string data, string desc)
         {
-            var lasso = makeParser();
+            var lasso = new SectionRowParser();
 
-            var result = lasso.ParseSectionRow(row);
+            var result = lasso.ParseRow(row);
 
             StringAssert.AreEqualIgnoringCase(result.Mnemonic, mnemonic);
             StringAssert.AreEqualIgnoringCase(result.Unit, unit);
@@ -55,6 +51,23 @@ namespace Lasso.UnitTests
             Assert.That(b.ToString(), !Is.Null);
             Assert.That(b.ToString(), Is.Empty);
             StringAssert.AreEqualIgnoringCase(b.ToString(), "");
+        }
+
+        [Test]
+        public void Parse_MultiSectionInput_ShouldInsertRowsIntoSections()
+        {
+            var input = @"~VERSION
+                          FLD .FT 2.0 : TEST
+                          FGH .FT 32 : FGH
+                          ~WELL
+                          WTF .M 23.2 : WOW";
+            MemoryStream ms = new MemoryStream(Encoding.ASCII.GetBytes(input));
+            var lasso = makeParser();
+
+            var result = lasso.Parse(ms);
+
+            Assert.AreEqual(2, result.Version.Items.Count);
+            Assert.AreEqual(1, result.Well.Items.Count);
         }
 
     }

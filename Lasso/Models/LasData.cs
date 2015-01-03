@@ -7,6 +7,17 @@ namespace LassoReader.Models
 {
     public class LasData
     {
-        //hmm data model needs to be "dynamic" to fit header/data structure. matrix.
+        private Dictionary<string, List<string>> _data;
+        public Dictionary<string, List<string>> LogData  
+        { 
+            get
+            {
+                return _data;
+            }
+            set
+            {
+                _data = value;
+            }
+        }
     }
 }
