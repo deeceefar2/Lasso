@@ -14,15 +14,15 @@ namespace LassoReader.Parsing
         private LasSection _curve;
         private Dictionary<string, List<string>> _result;
 
-        public DataRowParser(LasSection curve)
+        public DataRowParser()
         {
-            _curve = curve;
-            _result = SetupDataHeader(_curve);
+            //_curve = curve;
+            //_result = SetupDataHeader(_curve);
         }
 
         public Dictionary<string, List<string>> ParseRow(string row)
         {
-            string[] data = row.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] data = row.Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < data.Length-1; i++)
             {

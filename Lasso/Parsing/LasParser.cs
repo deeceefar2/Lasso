@@ -13,14 +13,6 @@ namespace LassoReader.Parsing
 {
     public class LasParser : ILasParser
     {
-      
-        private ISectionFactory _sectionFactory;
-
-        public LasParser()
-        {
-            _sectionFactory = new SectionFactory();
-        }
-
         public LasResult Parse(Stream stream) 
         {
             var result = new LasResult();
@@ -28,45 +20,52 @@ namespace LassoReader.Parsing
             {
                 using (TextReader tr = new StreamReader(stream))
                 {
+                    bool atAsciiHeader = false;
                     LasSection currentSection = null;
-                    SectionRowParser sectionParser = null;
-                    DataRowParser dataParser = null;
+                    ILasRowParser<LasSectionItem> sectionParser = null;
 
                     string currentLine;
-                    while ((currentLine = tr.ReadLine()) != null)
+                    char sectionIdentifier;
+
+                    while ((currentLine = tr.ReadLine()) != null && !atAsciiHeader)
                     {
                         currentLine = currentLine.Trim();
 
                         if(currentLine.IndexOf(Delimiters.COMMENT) == 0)
                             continue; //skip comment lines
 
+                        //we are at the beginning of a section lets find out what section
+                        //and setup up the appropriate objects to grab the data
                         if(currentLine.IndexOf(Delimiters.SECTIONBEGIN) == 0)
                         {
-                            var sectionIdentifier = currentLine[1];
+                            if (currentLine.Length < 2)
+                                throw new Exception("Missing section character.");
 
+                            sectionIdentifier = currentLine[1];
+
+                            if (sectionIdentifier.Equals(Sections.VERSIONINFO))
+                                currentSection = result.Version;
+                            if (sectionIdentifier.Equals(Sections.WELLINFO))
+                                currentSection = result.Well;
+                            if (sectionIdentifier.Equals(Sections.CURVEINFO))
+                                currentSection = result.Curve;
+                            if (sectionIdentifier.Equals(Sections.PARAMETERINFO))
+                                currentSection = result.Parameter;
+                            if (sectionIdentifier.Equals(Sections.OTHER))
+                                currentSection = result.Other;
                             if(sectionIdentifier.Equals(Sections.ASCIIDATA))
                             {
-                                dataParser = new DataRowParser(result.Curve);
-                                sectionParser = null;
+                                atAsciiHeader = true;
+                                break;
                             }
-                            else
-                            {
-                                currentSection = _sectionFactory.GetSectionInstance(sectionIdentifier, result);
-                                sectionParser = new SectionRowParser();
-                                dataParser = null;
-                            }
+                            sectionParser = ParserFactory.GetParser<LasSectionItem>();
                         }
-                        else
+                        else //else parse data in all sections 
                         {
-                            if(dataParser != null)
-                            {
-                                result.Data.LogData = dataParser.ParseRow(currentLine);
-                            }
-                            else if(sectionParser != null)
+                            if(sectionParser != null)
                             {
                                 currentSection.Items.Add(sectionParser.ParseRow(currentLine));
                             }
-                            
                         }
 
                     }
@@ -76,10 +75,11 @@ namespace LassoReader.Parsing
             }
             catch(Exception ex)
             {
-                return new LasResult
-                {
-                    Error = ex.Message
-                };
+                throw;
+                //return new LasResult
+                //{
+                //    Error = ex.Message
+                //};
             }
         }
 

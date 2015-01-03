@@ -70,5 +70,23 @@ namespace Lasso.UnitTests
             Assert.AreEqual(1, result.Well.Items.Count);
         }
 
+        [Test]
+        public void Parse_InvalidSectionData_ShouldReturnException()
+        {
+            var input = @"~
+                          FLD .FT 2.0 : TEST
+                          FGH .FT 32 : FGH
+                          ~WELL
+                          WTF .M 23.2 : WOW";
+            MemoryStream ms = new MemoryStream(Encoding.ASCII.GetBytes(input));
+            var lasso = makeParser();
+
+            var exception = Assert.Catch<Exception>(() => lasso.Parse(ms));
+
+            Assert.That(exception.Message, Is.StringContaining("Missing section character."));
+            
+
+        }
+
     }
 }
