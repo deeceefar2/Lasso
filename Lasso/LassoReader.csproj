@@ -37,7 +37,7 @@
     <Compile Include="Factory\SectionFactory.cs" />
     <Compile Include="Parsing\DataRowParser.cs" />
     <Compile Include="Parsing\ILasParser.cs" />
-    <Compile Include="Models\LasData.cs" />
+    <Compile Include="Models\LasAsciiData.cs" />
     <Compile Include="Models\LasResult.cs" />
     <Compile Include="Models\LasSection.cs" />
     <Compile Include="Models\LasSectionItem.cs" />

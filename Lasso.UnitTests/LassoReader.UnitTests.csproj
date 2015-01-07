@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataRowParserTests.cs" />
     <Compile Include="LasParserTests.cs" />
     <Compile Include="LassoTests.cs" />
     <Compile Include="ParsingUtilityTests.cs" />

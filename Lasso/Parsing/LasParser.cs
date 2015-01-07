@@ -11,8 +11,25 @@ using LassoReader.Factory;
 
 namespace LassoReader.Parsing
 {
-    public class LasParser : ILasParser
+    public class LasParser : ILasParser<LasResult>
     {
+        //section and data parser handle section and acii rows differently because the LAS
+        //standard defines two different delimited row styles for the section data and ascii data.
+        private ILasRowParser<LasSectionItem> _headerParser;
+        private ILasRowParser<string[]> _dataParser;
+
+        public LasParser()
+        {
+            _headerParser = new SectionRowParser();
+            _dataParser = new DataRowParser();
+        }
+
+        /// <summary>
+        /// Synchronous Parse method accepts stream as input. Returns LasResult on successful
+        /// parse.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns>LasResult</returns>
         public LasResult Parse(Stream stream) 
         {
             var result = new LasResult();
@@ -20,10 +37,9 @@ namespace LassoReader.Parsing
             {
                 using (TextReader tr = new StreamReader(stream))
                 {
-                    bool atAsciiHeader = false;
+                    //state
                     LasSection currentSection = null;
-                    ILasRowParser<LasSectionItem> sectionParser = null;
-
+                    bool atAsciiHeader = false;
                     string currentLine;
                     char sectionIdentifier;
 
@@ -58,28 +74,27 @@ namespace LassoReader.Parsing
                                 atAsciiHeader = true;
                                 break;
                             }
-                            sectionParser = ParserFactory.GetParser<LasSectionItem>();
                         }
                         else //else parse data in all sections 
                         {
-                            if(sectionParser != null)
-                            {
-                                currentSection.Items.Add(sectionParser.ParseRow(currentLine));
-                            }
+                            currentSection.Items.Add(_headerParser.ParseRow(currentLine));
                         }
-
+                    }
+                    
+                    //we're at the asci data section, parse the data rows! does not currently handled wrapped
+                    //data rows.
+                    while((currentLine = tr.ReadLine()) != null && atAsciiHeader)
+                    {
+                        currentLine = currentLine.Trim();
+                        result.DataRows.LogAsciiData.Add(_dataParser.ParseRow(currentLine));
                     }
                 }
 
                 return result;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 throw;
-                //return new LasResult
-                //{
-                //    Error = ex.Message
-                //};
             }
         }
 

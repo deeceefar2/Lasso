@@ -57,7 +57,7 @@ namespace Lasso.UnitTests
         public void Parse_MultiSectionInput_ShouldInsertRowsIntoSections()
         {
             var input = @"~VERSION
-                          FLD .FT 2.0 : TEST
+                          FLD .FT  : TEST
                           FGH .FT 32 : FGH
                           ~WELL
                           WTF .M 23.2 : WOW";
@@ -68,6 +68,31 @@ namespace Lasso.UnitTests
 
             Assert.AreEqual(2, result.Version.Items.Count);
             Assert.AreEqual(1, result.Well.Items.Count);
+        }
+
+        [Test]
+        public void Parse_ValidFullLasInput_ShouldInsertRowsIntoSectionsAndAsciiData()
+        {
+            var input = @"~VERSION
+                          FLD .FT 2.0 : TEST
+                          FGH .FT 32 : FGH
+                          ~WELL
+                          WTF .M 23.2 : WOW
+                          ~C
+                          DEPTH .FT : Depth
+                          MTF .DEG : Magnetic ToolFace
+                          ~ASCII
+                          23 30.5
+                          25 45.0";
+            MemoryStream ms = new MemoryStream(Encoding.ASCII.GetBytes(input));
+            var lasso = makeParser();
+
+            var result = lasso.Parse(ms);
+
+            Assert.AreEqual(result.Version.Items.Count, 2, "Version items count mismatch");
+            Assert.AreEqual(result.Well.Items.Count, 1, "Well items count mismatch");
+            Assert.AreEqual(result.Curve.Items.Count, 2, "Curve items count mismatch");
+            Assert.AreEqual(result.DataRows.LogAsciiData.Count(), 2, "DataRows items count mismatch");
         }
 
         [Test]
@@ -84,8 +109,6 @@ namespace Lasso.UnitTests
             var exception = Assert.Catch<Exception>(() => lasso.Parse(ms));
 
             Assert.That(exception.Message, Is.StringContaining("Missing section character."));
-            
-
         }
 
     }

@@ -7,9 +7,9 @@ using System.Text;
 
 namespace LassoReader.Parsing
 {
-    public interface ILasParser
+    public interface ILasParser<T> where T : class
     {
-        LasResult Parse(Stream stream);
-        LasResult ParseAsync(Stream stream);
+        T Parse(Stream stream);
+        T ParseAsync(Stream stream);
     }
 }
