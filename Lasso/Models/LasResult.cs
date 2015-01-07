@@ -28,5 +28,31 @@ namespace LassoReader.Models
             Other = new LasSection();
             DataRows = new LasAsciiData();
         }
+
+        public override string ToString()
+        {
+            StringBuilder toString = new StringBuilder();
+
+            toString.AppendLine("~Version Info");
+            LineAppender(Version, toString);
+            toString.AppendLine("~Well Info");
+            LineAppender(Well, toString);
+            toString.AppendLine("~Parameter Info");
+            LineAppender(Parameter, toString);
+            toString.AppendLine("~Other Info");
+            LineAppender(Other, toString);
+            toString.AppendLine("~Curve Info");
+            LineAppender(Curve, toString);
+            toString.AppendLine("~Ascii Data");
+            DataRows.LogAsciiData.ForEach(x => toString.AppendLine(x.ToString()));
+
+            return toString.ToString();
+        }
+
+        private void LineAppender(LasSection section, StringBuilder stringBuilder)
+        {
+            section.Items.ForEach(x => stringBuilder.AppendLine(x.Mnemonic + " "+ x.Unit + " " +
+                                                                x.Data + " " + x.Description));
+        }
     }
 }

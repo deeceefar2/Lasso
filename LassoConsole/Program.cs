@@ -15,50 +15,23 @@ namespace LassoConsole
     {
         static void Main(string[] args)
         {
-            var lasso = new SectionRowParser();
+            var input = @"~VERSION
+                          FLD .FT 2.0 : TEST
+                          FGH .FT 32 : FGH
+                          ~WELL
+                          WTF .M 23.2 : WOW
+                          ~C
+                          DEPTH .FT : Depth
+                          MTF .DEG : Magnetic ToolFace
+                          ~ASCII
+                          23 30.5
+                          25 45.0";
 
-            Stopwatch start = Stopwatch.StartNew();
-            for (int i = 0; i < 1000; i++)
-            {
-                lasso.ParseRow("STEP  .FT         0.20 :::: A                           : STEP UP ");
-            }
-            start.Stop();
-            Console.WriteLine("Concat time in ms: " + start.ElapsedMilliseconds);
+            var lasso = new LasParser();
+            var lasResult = lasso.Parse(new MemoryStream(Encoding.ASCII.GetBytes(input)));
 
-
-
-            Console.WriteLine("Stream test...");
-            MemoryStream ms = new MemoryStream(Encoding.ASCII.GetBytes("~VERSION TEST"));
-            using (TextReader tr = new StreamReader(ms))
-            {
-                char result = (char)tr.Read();
-                Console.WriteLine(result);
-                AdvanceReader(tr);
-                char result2 = (char)tr.Read();
-                Console.WriteLine(result2);
-            }
-
-
-
-
-
-            //Stopwatch start2 = Stopwatch.StartNew();
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    lasso.ParseSectionRowWithBuilder("STEP  .FT         0.20 :::: A                           : STEP UP ");
-            //}
-            //start2.Stop();
-            //Console.WriteLine("Concat time in ms: " + start2.ElapsedMilliseconds);
-
-            Console.WriteLine("Perf test done..");
+            Console.WriteLine(lasResult);
             Console.Read();
-            
-        }
-
-        public static void AdvanceReader(TextReader tr)
-        {
-          char result = (char)tr.Read();
-          Console.WriteLine(result);
         }
     }
 }
